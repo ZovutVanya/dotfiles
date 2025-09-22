@@ -1,0 +1,4 @@
+fix = true
+
+[lint]
+unfixable = ["F401"]  # prevent auto-removing unused imports

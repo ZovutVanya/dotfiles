@@ -1,0 +1,76 @@
+background-opacity = 0.85
+background-blur = 1
+background = black
+
+font-family = CommitMonoG1
+font-size = 16
+
+cursor-style = block
+shell-integration-features = no-cursor, ssh-env, ssh-terminfo, sudo, title
+
+macos-titlebar-style = tabs
+macos-icon = official
+
+confirm-close-surface=false
+
+window-height = 21
+window-width = 75
+
+window-position-x = 0
+window-position-y = 0
+
+# custom-shader = ghostty-shader-playground/shaders/WIP.glsl
+# custom-shader = ghostty-shader-playground/shaders/cursor_blaze.glsl
+# custom-shader = ghostty-shader-playground/shaders/cursor_blaze_no_trail.glsl
+# custom-shader = ghostty-shader-playground/shaders/cursor_blaze_tapered.glsl
+# custom-shader = ghostty-shader-playground/shaders/cursor_frozen.glsl
+# custom-shader = ghostty-shader-playground/shaders/cursor_smear.glsl
+custom-shader = ghostty-shader-playground/shaders/cursor_smear_fade.glsl
+# custom-shader = ghostty-shader-playground/shaders/debug_cursor_animated.glsl
+# custom-shader = ghostty-shader-playground/shaders/debug_cursor_static.glsl
+# custom-shader = ghostty-shader-playground/shaders/manga_slash.glsl
+# custom-shader = random_shaders/cursor_synesthaxia(tweened).glsl
+
+#========================================================================================================================
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /Users/gurkoff/Library/Application Support/com.mitchellh.ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
