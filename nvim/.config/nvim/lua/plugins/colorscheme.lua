@@ -9,6 +9,7 @@ return {
     transparent_background = true,
     integrations = {
       neotree = true,
+      -- bufferline = true,
     },
   },
 }

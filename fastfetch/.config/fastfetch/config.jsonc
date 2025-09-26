@@ -205,7 +205,7 @@
     {
       "type": "localip",
       "keyIcon": "  ├󰩟 ",
-      "showIpv4": true,
+      "showIpv4": false,
       "showIpv6": false,
       "showMac": false,
       "showLoop": false,
@@ -214,8 +214,8 @@
       "showSpeed": false,
       "showFlags": false,
       "compact": false,
-      "defaultRouteOnly": true,
-      "showAllIps": false,
+      "defaultRouteOnly": false,
+      "showAllIps": true,
       "namePrefix": ""
     },
     {
@@ -239,7 +239,8 @@
     "break",
     {
       "type": "os",
-      "keyIcon": "󰀶 ┐ "
+      // "keyIcon": "󰀶 ┐ "
+      "keyIcon": " ┐ "
     },
     {
       "type": "kernel",
@@ -260,12 +261,12 @@
     {
       "type": "de",
       // "keyIcon": "  ├ ",
-      "keyIcon": "  ├ ",
+      "keyIcon": "  ├󰧨 ",
       "slowVersionDetection": false
     },
     {
       "type": "wm",
-      "keyIcon": "  ├ ",
+      "keyIcon": "  ├ ",
       "detectPlugin": false
     },
     {
