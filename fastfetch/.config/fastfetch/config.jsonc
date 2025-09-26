@@ -205,7 +205,7 @@
     {
       "type": "localip",
       "keyIcon": "  ├󰩟 ",
-      "showIpv4": false,
+      "showIpv4": true,
       "showIpv6": false,
       "showMac": false,
       "showLoop": false,
@@ -214,8 +214,8 @@
       "showSpeed": false,
       "showFlags": false,
       "compact": false,
-      "defaultRouteOnly": false,
-      "showAllIps": true,
+      "defaultRouteOnly": true,
+      "showAllIps": false,
       "namePrefix": ""
     },
     {
