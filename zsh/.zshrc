@@ -119,7 +119,7 @@ alias grep='grep --color=auto'
 
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 
-alias fetch='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
+alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
