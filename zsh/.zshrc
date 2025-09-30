@@ -123,6 +123,19 @@ alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export PLTCOLLECTS=$PLTCOLLECTS:~/Desktop/SICP/
+
+# alias gitinit='echo "**/.DS_Store\n**/Icon?" > .gitignore && git init'
+
+git() {
+    if [[ $1 == "init" ]]; then
+        echo "**/.DS_Store\n**/Icon?" >> ".gitignore"
+        command git init "${@:2}"
+    else
+        command git "$@"
+    fi
+}
+
 # make dir and cd into it
 function cdir() {
   mkdir -p "$1" && cd "$1" || exit
