@@ -1,6 +1,9 @@
 return {
   {
     "mason-org/mason.nvim",
+    keys = {
+      { "<leader>M", "<cmd>Mason<CR>" },
+    },
     opts = {
       ui = {
         border = "rounded",
