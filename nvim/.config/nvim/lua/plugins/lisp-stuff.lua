@@ -2,7 +2,11 @@ return {
   { "wlangstroth/vim-racket", ft = "racket" },
   {
     "Olical/conjure",
-    ft = { "racket", "scheme" }, -- etc
+    ft = {
+      "racket",
+      "scheme",
+      "python",
+    }, -- etc
     lazy = true,
     init = function()
       -- Set configuration options here
