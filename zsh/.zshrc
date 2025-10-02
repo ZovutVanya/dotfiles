@@ -106,75 +106,86 @@ source "$ZSH"/oh-my-zsh.sh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 
-alias zshrc="nvim ~/.zshrc || vi ~/.zshrc"
-
-alias ls='eza'
-alias lsc='eza -lahsmodified'
-alias lsl='eza -lh'
-alias lsa='eza -lar'
-alias lst='eza -lhT'
-alias lstd='eza -lhTD'
-
-alias grep='grep --color=auto'
+alias zshrc="nvim ~/.zshrc || vim ~/.zshrc"
 
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
-
-alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
-
-export XDG_CONFIG_HOME="$HOME/.config"
-
-export PLTCOLLECTS=$PLTCOLLECTS:~/Desktop/SICP/
-
-# alias gitinit='echo "**/.DS_Store\n**/Icon?" > .gitignore && git init'
-
-git() {
-    if [[ $1 == "init" ]]; then
-        echo "**/.DS_Store\n**/Icon?" >> ".gitignore"
-        command git init "${@:2}"
-    else
-        command git "$@"
-    fi
-}
 
 # make dir and cd into it
 function cdir() {
   mkdir -p "$1" && cd "$1" || exit
 }
 
+# my shell scripts
+export PATH="$HOME/shell-scripts:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#===============================================================================
+
+# GREP
+alias grep='grep --color=auto'
+#===============================================================================
+
+# fastfetch
+alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
+#===============================================================================
+
+# THE DEFAULT CONFIG DIR
+export XDG_CONFIG_HOME="$HOME/.config"
+#===============================================================================
+
+# SICP
+export PLTCOLLECTS=$PLTCOLLECTS:~/Desktop/SICP/
+#===============================================================================
+
+# GIT
+git() {
+  if [[ $1 == "init" ]]; then
+    printf "**/.DS_Store\n**/Icon?" >> ".gitignore"
+    command git init "${@:2}"
+  else
+    command git "$@"
+    fi
+}
+
+alias groot='cd $(git rev-parse --show-toplevel)'
+#===============================================================================
 
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
-
-# fzf
-# source <(fzf --zsh)
+#===============================================================================
 
 # eza
 export EZA_COLORS="da=35"
+alias ls='eza'
+alias lsc='eza -lahsmodified'
+alias lsl='eza -lh'
+alias lsa='eza -lar'
+alias lst='eza -lhT'
+alias lstd='eza -lhTD'
+#===============================================================================
 
 # uv
 eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
+
 # "uv run" completions workaround
 function uvrun() {
-    uv run "$@"
+  uv run "$@"
 }
-
-# make arrays 0-indexed like bash
-# setopt KSH_ARRAYS
+#===============================================================================
 
 # Yazi
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	local tmp
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || exit
 	rm -f -- "$tmp"
 }
-
-# my shell scripts
-export PATH="$HOME/shell-scripts:$PATH"
+#===============================================================================
 
 # vi mode
 # bindkey -v
+#===============================================================================
