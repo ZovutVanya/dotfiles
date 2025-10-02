@@ -18,6 +18,7 @@ window-width = 75
 
 window-position-x = 0
 window-position-y = 0
+window-save-state = always
 
 # custom-shader = shaders/WIP.glsl
 # custom-shader = shaders/cursor_blaze.glsl
