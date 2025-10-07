@@ -149,6 +149,7 @@ git() {
 }
 
 alias groot='cd $(git rev-parse --show-toplevel)'
+alias groot..='cd $(git rev-parse --show-toplevel) && cd ..'
 #===============================================================================
 
 # zoxide
@@ -191,3 +192,32 @@ function y() {
 #===============================================================================
 
 ssh-add --apple-load-keychain -q
+#===============================================================================
+
+# 6th version of ffmpeg for torchaudio backend
+export PATH="/opt/homebrew/opt/ffmpeg@6/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/ffmpeg@6/include"
+export LDFLAGS="-L/opt/homebrew/opt/ffmpeg@6/lib"
+export DYLD_LIBRARY_PATH="/opt/homebrew/opt/ffmpeg@6/lib:$DYLD_LIBRARY_PATH"
+export TORIO_USE_FFMPEG_VERSION=6
+#===============================================================================
+
+# GNU utils instead of BSD
+BREW_BIN="/usr/local/bin/brew"
+if [ -f "/opt/homebrew/bin/brew" ]; then
+    BREW_BIN="/opt/homebrew/bin/brew"
+fi
+
+if type "${BREW_BIN}" &> /dev/null; then
+    export BREW_PREFIX="$("${BREW_BIN}" --prefix)"
+    for bindir in "${BREW_PREFIX}/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
+    # for bindir in "${BREW_PREFIX}/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
+    for mandir in "${BREW_PREFIX}/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
+    for mandir in "${BREW_PREFIX}/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
+fi
+#===============================================================================
+
+# Atuin
+export ATUIN_NOBIND=true
+eval "$(atuin init zsh)"
+bindkey '^r' atuin-up-search-viins
