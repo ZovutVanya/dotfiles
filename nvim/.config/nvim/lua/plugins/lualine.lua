@@ -25,6 +25,15 @@
 --   return " " .. table.concat(names, ", ")
 -- end
 
+local unix_symbol = ""
+local os_name = vim.loop.os_uname().sysname
+
+if os_name == "Darwin" then
+  unix_symbol = " | "
+elseif os_name == "Linux" then
+  unix_symbol = " "
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   opts = {
@@ -45,7 +54,7 @@ return {
         },
         {
           "fileformat",
-          symbols = { unix = " |", dos = "󰨡" },
+          symbols = { unix = unix_symbol, dos = "󰨡" },
           separator = { right = "" },
           left_padding = 0,
         },
