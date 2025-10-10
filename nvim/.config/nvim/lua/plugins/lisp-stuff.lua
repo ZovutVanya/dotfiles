@@ -5,7 +5,7 @@ return {
     ft = {
       "racket",
       "scheme",
-      "python",
+      -- "python",
     }, -- etc
     lazy = true,
     init = function()
