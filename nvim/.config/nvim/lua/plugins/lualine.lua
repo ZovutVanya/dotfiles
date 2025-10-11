@@ -44,6 +44,8 @@ return {
     sections = {
       lualine_a = { { "mode", separator = { left = "" }, right_padding = 0 } },
       lualine_y = {
+        { "location", right_padding = 0, left_padding = 0 },
+        { "progress" },
         -- { "lsp_status", icon = " " },
         -- lint_progress,
         -- conform_progress,
