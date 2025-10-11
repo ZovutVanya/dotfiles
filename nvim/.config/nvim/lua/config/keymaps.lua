@@ -3,9 +3,6 @@
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
--- disable the LazyVim Ctrl+s keymap
-vim.keymap.del("n", "<C-s")
-
 -- :W == :w
 vim.api.nvim_create_user_command("W", "write", {})
 vim.api.nvim_create_user_command("Q", "quit", {})
