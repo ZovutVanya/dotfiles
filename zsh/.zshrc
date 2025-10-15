@@ -174,6 +174,9 @@ eval "$(uvx --generate-shell-completion zsh)"
 function uvrun() {
   uv run "$@"
 }
+
+# activate venvs
+alias uvact='source $(git rev-parse --show-toplevel)/.venv/bin/activate'
 #===============================================================================
 
 # Yazi
