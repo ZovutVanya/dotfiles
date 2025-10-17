@@ -39,6 +39,8 @@ return {
         "stylua",
         "tinymist",
         "usort",
+        "jq",
+        "jsonlint",
       },
       automatic_installation = true,
       handlers = {
