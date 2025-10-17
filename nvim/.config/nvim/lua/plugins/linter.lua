@@ -12,6 +12,7 @@ return {
       lua = { "selene" },
       text = {},
       markdown = {},
+      json = { "jsonlint" },
       -- sql = { "sqlfluff" },
     },
     linters = {
@@ -20,11 +21,6 @@ return {
           return not ctx.filename:match("%.env")
         end,
       },
-      -- sqlfluff = {
-      --   condition = function(ctx)
-      --     return not ctx.filename:match("%.sql")
-      --   end,
-      -- },
     },
   },
   config = function(_, opts)
@@ -35,6 +31,13 @@ return {
       pattern = "zsh",
       callback = function()
         table.insert(lint.linters.shellcheck.args, 1, "--shell=bash")
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "c",
+      callback = function()
+        table.insert(lint.linters.cpplint.args, 1, "--filter=-legal/copyright")
       end,
     })
 
