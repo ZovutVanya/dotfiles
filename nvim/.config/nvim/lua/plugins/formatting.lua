@@ -17,6 +17,14 @@ return {
       sql = { "sqlfmt" },
       c = { "clang-format" },
       cpp = { "clang-format" },
+      racket = { "racofmt" },
+      json = { "jq" },
+    },
+    formatters = {
+      racofmt = {
+        command = "raco-fmt-stdin",
+        stdin = true,
+      },
     },
   },
 }
