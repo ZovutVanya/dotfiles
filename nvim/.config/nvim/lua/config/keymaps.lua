@@ -3,12 +3,17 @@
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
+vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
+vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
+vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
+
 -- :W == :w
 vim.api.nvim_create_user_command("W", "write", {})
 vim.api.nvim_create_user_command("Q", "quit", {})
 
 -- clear highlighting
-vim.keymap.set({ "n" }, "<C-l>", "<cmd>noh<CR>")
+-- vim.keymap.set({ "n" }, "<C-l>", "<cmd>noh<CR>")
 
 -- append next line without moving the cursor
 vim.keymap.set("n", "J", "mzJ`z")
@@ -26,7 +31,7 @@ vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<C-e>", "ge")
 
 -- scrolling down without moving the cursor
-vim.keymap.set("n", "<C-h>", "<C-e>")
+vim.keymap.set("n", "<C-m>", "<C-e>")
 
 -- jumping half page keeps the cursor at the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
