@@ -17,7 +17,7 @@ return {
   },
 
   {
-    "mason-org/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
         "basedpyright",
@@ -42,6 +42,12 @@ return {
         "jq",
         "jsonlint",
       },
+    },
+  },
+
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
       automatic_installation = true,
       handlers = {
         lsprust_analyzer = function() end,
