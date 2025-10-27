@@ -38,7 +38,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- LSP renaming
-vim.keymap.set("n", "<leader>rn", ":IncRename ")
+vim.keymap.set("n", "<leader>r", ":IncRename ")
 
 -- copy line diagnostics to the systems clipboard
 vim.keymap.set(

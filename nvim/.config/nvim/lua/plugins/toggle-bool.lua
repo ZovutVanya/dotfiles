@@ -2,13 +2,13 @@ return {
   "gerazov/toggle-bool.nvim",
   config = function()
     require("toggle-bool").setup({
-      mapping = "<leader>tt",
+      mapping = "<leader>t",
     })
   end,
   keys = {
     {
-      "<leader>tt",
-      desc = "toggle boolean on line",
+      "<leader>t",
+      desc = "Toggle boolean",
       mode = { "n", "v" },
     },
   },
