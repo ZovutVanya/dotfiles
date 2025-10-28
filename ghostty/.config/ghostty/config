@@ -3,7 +3,7 @@ background-blur = 1
 background = black
 
 font-family = CommitMonoG1
-font-size = 16
+font-size = 18
 
 cursor-style = block
 shell-integration-features = no-cursor, ssh-env, ssh-terminfo, sudo, title
