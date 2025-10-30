@@ -4,6 +4,15 @@ return {
     { "<leader>\\", ":lua Snacks.dashboard()<CR>" },
   },
   opts = {
+    styles = {
+      lazygit = {
+        -- add border by specifying border style
+        border = "rounded", -- other options: "single", "double", "solid", etc
+        title = " la💤ygit",
+        width = 0.9,
+        height = 0.9,
+      },
+    },
     picker = {
       sources = {
         explorer = {
