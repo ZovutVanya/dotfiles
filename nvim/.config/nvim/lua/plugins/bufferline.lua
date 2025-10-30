@@ -5,6 +5,7 @@ return {
       indicator = {
         style = "underline",
       },
+      numbers = "ordinal",
     },
   },
 }
