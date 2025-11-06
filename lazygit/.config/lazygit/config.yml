@@ -1,7 +1,6 @@
 os:
-  editPreset: 'nvim'
-
+  editPreset: "nvim"
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --plus-style 'syntax "#032B14"' --plus-emph-style 'auto "#006222"' --minus-style 'auto "#341D21"' --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  pagers:
+    - colorArg: always
+      pager: delta --dark --plus-style 'syntax "#032B14"' --plus-emph-style 'auto "#006222"' --minus-style 'auto "#341D21"' --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

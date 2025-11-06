@@ -19,6 +19,7 @@ return {
       cpp = { "clang-format" },
       racket = { "racofmt" },
       json = { "jq" },
+      typst = { "prettypst" },
     },
     formatters = {
       racofmt = {

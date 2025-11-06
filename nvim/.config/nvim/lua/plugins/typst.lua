@@ -4,7 +4,15 @@ return {
     ft = "typst",
     version = "1.*",
     opts = {
-      open_cmd = nil,
+      open_cmd = "qutebrowser %s",
+    },
+    keys = {
+      {
+        "<leader>yt",
+        ":TypstPreviewToggle<CR>",
+        desc = "TypstPreviewToggle",
+        { "n", "v" },
+      },
     },
   },
   -- {

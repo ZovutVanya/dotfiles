@@ -10,6 +10,7 @@ return {
         { "<leader>z", group = "InlayHints", icon = { icon = "󱙝" } },
         { "<leader>m", group = "mini", icon = { icon = "" } },
         { "<leader>ms", group = "surround" },
+        { "<leader>y", group = "Typst", icon = { icon = "" } },
         { "<leader>r", icon = { icon = "󰑕" } },
         { "<leader>o", icon = { icon = "" } },
         { "<leader>O", icon = { icon = "" } },

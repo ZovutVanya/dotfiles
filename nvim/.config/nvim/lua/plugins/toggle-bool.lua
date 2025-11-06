@@ -8,6 +8,7 @@ return {
   keys = {
     {
       "<leader>t",
+      "<leader>t",
       desc = "Toggle boolean",
       mode = { "n", "v" },
     },

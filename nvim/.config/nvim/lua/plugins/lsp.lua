@@ -6,6 +6,9 @@ return {
       { "gd", vim.lsp.buf.definition, desc = "Go to definition" },
     },
     opts = {
+      diagnostics = {
+        virtual_text = false,
+      },
       servers = {
 
         lua_ls = {
