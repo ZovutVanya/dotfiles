@@ -27,7 +27,7 @@ return {
         "codelldb",
         "cpplint",
         "lua_ls",
-        -- "postgres-language-server",
+        "postgres-language-server",
         -- "powershell_es",
         "ruff",
         "selene",
