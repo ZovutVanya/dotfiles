@@ -25,17 +25,7 @@ keybind = unconsumed:ctrl+j=goto_split:bottom
 keybind = unconsumed:ctrl+h=goto_split:left
 keybind = unconsumed:ctrl+l=goto_split:right
 
-# custom-shader = shaders/WIP.glsl
-# custom-shader = shaders/cursor_blaze.glsl
-# custom-shader = shaders/cursor_blaze_no_trail.glsl
-# custom-shader = shaders/cursor_blaze_tapered.glsl
-# custom-shader = shaders/cursor_frozen.glsl
-# custom-shader = shaders/cursor_smear.glsl
 custom-shader = shaders/cursor_smear_fade.glsl
-# custom-shader = shaders/debug_cursor_animated.glsl
-# custom-shader = shaders/debug_cursor_static.glsl
-# custom-shader = shaders/manga_slash.glsl
-# custom-shader = random_shaders/cursor_synesthaxia(tweened).glsl
 
 #========================================================================================================================
 # This is the configuration file for Ghostty.

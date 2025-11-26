@@ -3,8 +3,9 @@ return {
   opts = {
     filetypes = { "alpha", "snacks_dashboard" },
     -- theme = "auto",
-    theme = "xmas",
-    max = 30,
-    interval = 1000,
+    theme = "snow",
+    max = 100,
+    interval = 500,
+    winblend = 100,
   },
 }

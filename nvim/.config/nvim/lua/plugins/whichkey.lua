@@ -18,6 +18,7 @@ return {
         { "<leader>I", icon = { icon = "" } },
         { "<leader>X", icon = { icon = "" } },
         { "<leader>K", icon = { icon = "󱔘" } },
+        { "<leader>Y", icon = { icon = "" } },
       },
     },
   },

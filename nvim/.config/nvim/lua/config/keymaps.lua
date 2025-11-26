@@ -3,10 +3,17 @@
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
-vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
+-- stylua: ignore start
+-- copy the contents of 0 register (last yank) to clipboard
+vim.keymap.set(
+  "n",
+  "<leader>Y",
+  function()
+    vim.fn.setreg("+", vim.fn.getreg("0"))
+  end,
+  { desc = "0 reg -> clipboard"}
+)
+-- stylua: ignore end
 
 -- :W == :w
 vim.api.nvim_create_user_command("W", "write", {})

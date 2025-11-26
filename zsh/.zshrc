@@ -152,6 +152,10 @@ alias groot='cd $(git rev-parse --show-toplevel)'
 alias groot..='cd $(git rev-parse --show-toplevel) && cd ..'
 #===============================================================================
 
+# lazygit
+alias lg="lazygit"
+#===============================================================================
+
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
 #===============================================================================
@@ -198,11 +202,11 @@ ssh-add --apple-load-keychain -q
 #===============================================================================
 
 # 6th version of ffmpeg for torchaudio backend
-export PATH="/opt/homebrew/opt/ffmpeg@6/bin:$PATH"
-export CPPFLAGS="-I/opt/homebrew/opt/ffmpeg@6/include"
-export LDFLAGS="-L/opt/homebrew/opt/ffmpeg@6/lib"
-export DYLD_LIBRARY_PATH="/opt/homebrew/opt/ffmpeg@6/lib:$DYLD_LIBRARY_PATH"
-export TORIO_USE_FFMPEG_VERSION=6
+# export PATH="/opt/homebrew/opt/ffmpeg@6/bin:$PATH"
+# export CPPFLAGS="-I/opt/homebrew/opt/ffmpeg@6/include"
+# export LDFLAGS="-L/opt/homebrew/opt/ffmpeg@6/lib"
+# export DYLD_LIBRARY_PATH="/opt/homebrew/opt/ffmpeg@6/lib:$DYLD_LIBRARY_PATH"
+# export TORIO_USE_FFMPEG_VERSION=6
 #===============================================================================
 
 # GNU utils instead of BSD
@@ -224,3 +228,8 @@ fi
 export ATUIN_NOBIND=true
 eval "$(atuin init zsh)"
 bindkey '^r' atuin-up-search-viins
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/gurkoff/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
