@@ -3,18 +3,6 @@
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
--- stylua: ignore start
--- copy the contents of 0 register (last yank) to clipboard
-vim.keymap.set(
-  "n",
-  "<leader>Y",
-  function()
-    vim.fn.setreg("+", vim.fn.getreg("0"))
-  end,
-  { desc = "0 reg -> clipboard"}
-)
--- stylua: ignore end
-
 -- :W == :w
 vim.api.nvim_create_user_command("W", "write", {})
 vim.api.nvim_create_user_command("Q", "quit", {})
@@ -51,9 +39,21 @@ vim.keymap.set("n", "<leader>r", ":IncRename ")
 vim.keymap.set(
   "n",
   "<leader>cy",
-  ":lua vim.diagnostic.open_float()<CR>:lua vim.diagnostic.open_float()<CR>:%y+<CR>:q<CR>",
+  ":lua vim.diagnostic.open_float()<CR>:lua vim.diagnostic.open_float()<CR>:%y+<CR>",
   { desc = 'Copy Line Diagnostics to "+' }
 )
 
 -- copy filename to the systems clipboard
 vim.keymap.set("n", "<leader>fC", ":let @+ = expand('%:p')<CR>", { desc = 'Copy filepath to "+' })
+
+-- stylua: ignore start
+-- copy the contents of 0 register (last yank) to clipboard
+vim.keymap.set(
+  "n",
+  "<leader>Y",
+  function()
+    vim.fn.setreg("+", vim.fn.getreg("0"))
+  end,
+  { desc = "0 reg -> clipboard"}
+)
+-- stylua: ignore end
