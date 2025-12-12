@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+-- vim.cmd("color christmas")
 vim.cmd("color catppuccin")
 vim.cmd("highlight Normal guibg=NONE")
 vim.cmd("highlight NormalNC guibg=NONE")
