@@ -1,22 +1,70 @@
 return {
   {
     "catppuccin/nvim",
-    lazy = false,
     name = "catppuccin",
+    lazy = false,
     priority = 1000,
     opts = {
-      auto_integrations = true,
       flavour = "mocha",
       transparent_background = true,
+      float = {
+        transparent = true,
+      },
       integrations = {
         neotree = true,
-        -- bufferline = true,
+        snacks = true,
+        dashboard = true,
+      },
+
+      custom_highlights = {
+        Normal = { bg = "NONE" },
+        NormalNC = { bg = "NONE" },
+        NonText = { bg = "NONE" },
+        SignColumn = { bg = "NONE" },
+
+        NeoTreeNormal = { bg = "NONE" },
+        NeoTreeNormalNC = { bg = "NONE" },
+
+        NormalFloat = { bg = "NONE", blend = 30 },
+        FloatBorder = { link = "Normal" },
+        FloatTitle = { bg = "NONE", blend = 30 },
+        Pmenu = { bg = "NONE", blend = 20 },
+
+        NoiceScrollbar = { fg = "#999999", bg = "NONE" },
+        NoiceScrollbarThumb = { fg = "#999999", bg = "NONE" },
+
+        StatusLine = { bg = "NONE" },
+
+        SnacksDashboardHeader = { fg = "#F9E6B7" },
+        SnacksDashboardTitle = { fg = "#F9E6B7" },
+        SnacksDashboardIcon = { fg = "#5C845F" },
+        SnacksDashboardDesc = { fg = "#A6E3A1" },
+        SnacksDashboardFile = { fg = "#A6E3A1" },
+        SnacksDashboardFooter = { fg = "#A6E3A1" },
+        SnacksDashboardSpecial = { link = "Number" },
       },
     },
   },
+
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = true,
+  --   opts = { style = "moon" },
+  --   transparent = true,
+  --   styles = {
+  --     sidebars = "transparent",
+  --     floats = "transparent",
+  --   },
+  -- },
   -- {
   --   "chaserensberger/christmas.nvim",
   --   name = "christmas",
   --   lazy = false,
   -- },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
 }

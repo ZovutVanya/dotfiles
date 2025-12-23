@@ -1,12 +1,18 @@
 return {
-  { "wlangstroth/vim-racket", ft = "racket" },
+  {
+    "wlangstroth/vim-racket",
+    ft = "racket",
+    config = function()
+      vim.cmd("iabbrev <buffer> lambda λ")
+    end,
+  },
+
   {
     "Olical/conjure",
     ft = {
       "racket",
       "scheme",
-      -- "python",
-    }, -- etc
+    },
     lazy = true,
     init = function()
       -- Set configuration options here
