@@ -7,13 +7,15 @@ return {
     opts = {
       flavour = "mocha",
       transparent_background = true,
-      float = {
-        transparent = true,
-      },
+      -- float = {
+      --   transparent = true,
+      --   solid = true,
+      -- },
       integrations = {
         neotree = true,
         snacks = true,
         dashboard = true,
+        drop = true,
       },
 
       custom_highlights = {
@@ -21,6 +23,8 @@ return {
         NormalNC = { bg = "NONE" },
         NonText = { bg = "NONE" },
         SignColumn = { bg = "NONE" },
+
+        -- Drop = { bg = "NONE", nocombine = false, blend = 100 },
 
         NeoTreeNormal = { bg = "NONE" },
         NeoTreeNormalNC = { bg = "NONE" },
