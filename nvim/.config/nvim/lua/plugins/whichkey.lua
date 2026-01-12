@@ -7,9 +7,9 @@ return {
     spec = {
       {
         mode = { "n", "x" },
-        { "<leader>z", group = "InlayHints", icon = { icon = "󱙝" } },
+        { "<leader>uh", group = "InlayHints", icon = { icon = "󱙝" } },
         { "<leader>m", group = "mini", icon = { icon = "" } },
-        { "<leader>ms", group = "surround" },
+        { "<leader>ms", group = "surround", icon = { icon = "󰗅" } },
         { "<leader>y", group = "Typst", icon = { icon = "" } },
         { "<leader>r", icon = { icon = "󰑕" } },
         { "<leader>o", icon = { icon = "" } },

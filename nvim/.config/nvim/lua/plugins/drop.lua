@@ -2,7 +2,7 @@ return {
   -- "folke/drop.nvim",
   "hendrikpetertje/drop.nvim",
   branch = "fix-border",
-  enabled = true,
+  enabled = false,
   opts = {
     filetypes = { "alpha", "snacks_dashboard" },
     -- theme = "auto",

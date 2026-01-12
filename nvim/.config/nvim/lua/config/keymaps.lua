@@ -3,6 +3,10 @@
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
+if vim.lsp.inlay_hint then
+  Snacks.toggle.inlay_hints():map("<leader>uhs")
+end
+
 -- :W == :w
 vim.api.nvim_create_user_command("W", "write", {})
 vim.api.nvim_create_user_command("Q", "quit", {})

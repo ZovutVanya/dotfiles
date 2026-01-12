@@ -110,11 +110,6 @@ alias zshrc="nvim ~/.zshrc || vim ~/.zshrc"
 
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 
-# make dir and cd into it
-function cdir() {
-  mkdir -p "$1" && cd "$1" || exit
-}
-
 # my shell scripts
 export PATH="$HOME/shell-scripts:$PATH"
 
