@@ -121,6 +121,14 @@ export PATH="$HOME/shell-scripts:$PATH"
 alias grep='grep --color=auto'
 #===============================================================================
 
+# PYTHON
+alias py="python3"
+# Default Python environment
+if [ -d "$HOME/venvs/default" ]; then
+  source "$HOME/venvs/default/bin/activate"
+fi
+#===============================================================================
+
 # fastfetch
 alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
 #===============================================================================
