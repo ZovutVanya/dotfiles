@@ -97,6 +97,7 @@ source "$ZSH"/oh-my-zsh.sh
 # fi
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
+export EDITOR=nvim
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
@@ -236,3 +237,20 @@ fpath=(/Users/gurkoff/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+#===============================================================================
+
+# edit command buffer
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^x^e" edit-command-line
+
+#===============================================================================
+
+# PostgreSQL
+export PATH="/Library/PostgreSQL/18/bin:$PATH"
+
+#===============================================================================
+
+
+

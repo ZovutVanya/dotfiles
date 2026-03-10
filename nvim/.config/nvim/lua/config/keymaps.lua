@@ -3,6 +3,8 @@
 -- Add any additional keymaps here
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<leader>cw", '"_ciw')
+
 if vim.lsp.inlay_hint then
   Snacks.toggle.inlay_hints():map("<leader>uhs")
 end
