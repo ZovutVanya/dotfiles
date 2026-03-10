@@ -15,7 +15,10 @@ shell-integration-features = no-cursor, ssh-env, ssh-terminfo, sudo, title
 macos-titlebar-style = tabs
 macos-icon = official
 
-confirm-close-surface=false
+confirm-close-surface = false
+
+keybind = ctrl+[=jump_to_prompt:-1
+keybind = ctrl+]=jump_to_prompt:1
 
 window-height = 21
 window-width = 75
