@@ -52,6 +52,7 @@ return {
 
   -- {
   --   "folke/tokyonight.nvim",
+  --   name = "tokyonight",
   --   lazy = true,
   --   opts = { style = "moon" },
   --   transparent = true,
@@ -60,15 +61,11 @@ return {
   --     floats = "transparent",
   --   },
   -- },
-  -- {
-  --   "chaserensberger/christmas.nvim",
-  --   name = "christmas",
-  --   lazy = false,
-  -- },
   {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "catppuccin",
+      -- colorscheme = "tokyonight",
     },
   },
 }

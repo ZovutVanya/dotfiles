@@ -252,5 +252,7 @@ export PATH="/Library/PostgreSQL/18/bin:$PATH"
 
 #===============================================================================
 
+# brew
+alias brewup='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 
-
+#===============================================================================
