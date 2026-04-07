@@ -1,16 +1,15 @@
 return {
   {
     "catppuccin/nvim",
-    name = "catppuccin",
     lazy = false,
     priority = 1000,
     opts = {
       flavour = "mocha",
       transparent_background = true,
-      -- float = {
-      --   transparent = true,
-      --   solid = true,
-      -- },
+      float = {
+        transparent = true,
+        solid = true,
+      },
       integrations = {
         neotree = true,
         snacks = true,
@@ -50,22 +49,10 @@ return {
     },
   },
 
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   name = "tokyonight",
-  --   lazy = true,
-  --   opts = { style = "moon" },
-  --   transparent = true,
-  --   styles = {
-  --     sidebars = "transparent",
-  --     floats = "transparent",
-  --   },
-  -- },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
-      -- colorscheme = "tokyonight",
+      colorscheme = "catppuccin-nvim",
     },
   },
 }

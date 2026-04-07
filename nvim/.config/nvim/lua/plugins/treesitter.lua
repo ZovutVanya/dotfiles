@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
   opts = {
     highlight = { enable = true },
     indent = { enable = true },

@@ -4,7 +4,7 @@ return {
     ft = "typst",
     version = "1.*",
     opts = {
-      open_cmd = "qutebrowser %s",
+      open_cmd = "open -a Safari %s",
     },
     keys = {
       {

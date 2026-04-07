@@ -256,3 +256,6 @@ export PATH="/Library/PostgreSQL/18/bin:$PATH"
 alias brewup='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 
 #===============================================================================
+
+# go bin
+export PATH="$HOME/go/bin:$PATH"
