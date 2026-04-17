@@ -23,7 +23,7 @@ CASE_SENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -145,11 +145,11 @@ export PLTCOLLECTS=$PLTCOLLECTS:~/Desktop/SICP/
 # GIT
 git() {
   if [[ $1 == "init" ]]; then
-    printf "**/.DS_Store\n**/Icon?" >> ".gitignore"
+    printf "**/.DS_Store\n**/Icon?" >>".gitignore"
     command git init "${@:2}"
   else
     command git "$@"
-    fi
+  fi
 }
 
 alias groot='cd $(git rev-parse --show-toplevel)'
@@ -189,12 +189,12 @@ alias uvact='source $(git rev-parse --show-toplevel)/.venv/bin/activate'
 
 # Yazi
 function y() {
-	local tmp
+  local tmp
   tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || exit
-	rm -f -- "$tmp"
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || exit
+  rm -f -- "$tmp"
 }
 #===============================================================================
 
@@ -216,28 +216,16 @@ ssh-add --apple-load-keychain -q
 # GNU utils instead of BSD
 BREW_BIN="/usr/local/bin/brew"
 if [ -f "/opt/homebrew/bin/brew" ]; then
-    BREW_BIN="/opt/homebrew/bin/brew"
+  BREW_BIN="/opt/homebrew/bin/brew"
 fi
 
-if type "${BREW_BIN}" &> /dev/null; then
-    export BREW_PREFIX="$("${BREW_BIN}" --prefix)"
-    for bindir in "${BREW_PREFIX}/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
-    # for bindir in "${BREW_PREFIX}/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
-    for mandir in "${BREW_PREFIX}/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
-    for mandir in "${BREW_PREFIX}/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
+if type "${BREW_BIN}" &>/dev/null; then
+  export BREW_PREFIX="$("${BREW_BIN}" --prefix)"
+  for bindir in "${BREW_PREFIX}/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
+  # for bindir in "${BREW_PREFIX}/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
+  for mandir in "${BREW_PREFIX}/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
+  for mandir in "${BREW_PREFIX}/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
 fi
-#===============================================================================
-
-# Atuin
-export ATUIN_NOBIND=true
-eval "$(atuin init zsh)"
-bindkey '^r' atuin-up-search-viins
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/gurkoff/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
 #===============================================================================
 
 # edit command buffer

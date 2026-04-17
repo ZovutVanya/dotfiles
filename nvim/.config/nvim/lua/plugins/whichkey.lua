@@ -12,6 +12,7 @@ return {
         { "<leader>ms", group = "surround", icon = { icon = "󰗅" } },
         { "<leader>y", group = "Typst", icon = { icon = "" } },
         { "<leader>r", icon = { icon = "󰑕" } },
+        { "<leader>R", icon = { icon = "" } },
         { "<leader>o", icon = { icon = "" } },
         { "<leader>O", icon = { icon = "" } },
         { "<leader>i", icon = { icon = "" } },
