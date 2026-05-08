@@ -5,6 +5,9 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>cw", '"_ciw')
 
+-- stop Ctrl+z from suspending NeoVim
+vim.keymap.set({ "n", "v", "i" }, "<C-z>", "u", { silent = true })
+
 -- restart neovim
 vim.keymap.set("n", "<leader>R", function()
   local session = vim.fn.stdpath("state") .. "/restart_session.vim"
@@ -39,7 +42,7 @@ vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<C-e>", "ge")
 
 -- scrolling down without moving the cursor
-vim.keymap.set("n", "<C-m>", "<C-e>")
+vim.keymap.set("n", "<C-h>", "<C-e>")
 
 -- jumping half page keeps the cursor at the middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

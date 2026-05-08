@@ -20,6 +20,7 @@ return {
       racket = { "racofmt" },
       json = { "jq" },
       typst = { "prettypst" },
+      yaml = { "yamlfmt" },
     },
     formatters = {
       racofmt = {

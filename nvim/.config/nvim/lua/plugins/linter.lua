@@ -13,6 +13,7 @@ return {
       text = {},
       markdown = {},
       json = { "jsonlint" },
+      -- yaml = { "kube_linter" },
       -- sql = { "sqlfluff" },
     },
     linters = {
