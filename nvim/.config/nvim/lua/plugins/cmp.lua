@@ -2,6 +2,14 @@ return {
   "saghen/blink.cmp",
   -- version = "1.*",
   opts = {
+    -- keymap = {
+    --   preset = "default",
+    --
+    --   ["<c-j>"] = { "snippet_forward", "fallback" },
+    --   ["<c-k>"] = { "snippet_backward", "fallback" },
+    --
+    --   ["<c-s>"] = { "show_signature", "hide_signature", "fallback" },
+    -- },
     completion = {
       accept = {
         auto_brackets = {
