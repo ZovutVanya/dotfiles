@@ -19,7 +19,8 @@
     "padding": {
       "top": 5,
       "left": 0,
-      "right": 4
+      "right": 4,
+      "bottom": 4,
     },
     "printRemaining": true,
     "preserveAspectRatio": false,

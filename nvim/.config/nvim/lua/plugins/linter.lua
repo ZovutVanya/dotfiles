@@ -27,6 +27,14 @@ return {
   config = function(_, opts)
     local lint = require("lint")
 
+    lint.linters.selene.args = {
+      "--config",
+      vim.fn.stdpath("config") .. "/selene.toml",
+      "--display-style",
+      "json",
+      "-",
+    }
+
     -- Prepend --shell=bash to shellcheck's args
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "zsh",

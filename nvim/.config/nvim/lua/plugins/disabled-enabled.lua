@@ -7,4 +7,5 @@ return {
   { "al-kot/typst-preview.nvim", enabled = true },
   { "szw/vim-maximizer", enabled = false },
   { "nvim-mini/mini.pairs", enabled = true },
+  { "ThePrimeagen/vim-be-good", enabled = false },
 }
