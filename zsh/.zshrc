@@ -247,3 +247,8 @@ alias brewup='brew update && brew upgrade && brew upgrade --cask && brew cleanup
 
 # go bin
 export PATH="$HOME/go/bin:$PATH"
+
+# ssh to feynman without tmux
+ssh_plain() {
+  ssh "$@" -t 'NO_TMUX=1 exec $SHELL -l'
+}
