@@ -29,7 +29,7 @@ local unix_symbol = ""
 local os_name = vim.loop.os_uname().sysname
 
 if os_name == "Darwin" then
-  unix_symbol = " | "
+  unix_symbol = " ⊃ 󰀶"
 elseif os_name == "Linux" then
   unix_symbol = " "
 end
