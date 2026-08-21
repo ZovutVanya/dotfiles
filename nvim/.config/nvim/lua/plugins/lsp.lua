@@ -11,6 +11,9 @@ return {
       },
       inlay_hints = { enabled = false },
       servers = {
+        ruff = {
+          enabled = false,
+        },
 
         lua_ls = {
           settings = {
@@ -63,7 +66,7 @@ return {
             local fname = vim.api.nvim_buf_get_name(bufnr)
             if fname:match("/%.env") or fname:match("%.env$") then
               vim.schedule(function()
-                vim.lsp.stop_client(client.id)
+                client:stop()
               end)
             end
           end,
