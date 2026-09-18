@@ -67,3 +67,15 @@ map(
 
 -- copy filename to the systems clipboard
 map("n", "<leader>fC", ":let @+ = expand('%:p')<CR>", { desc = 'Copy filepath to "+' })
+
+-- stylua: ignore start
+-- copy the contents of 0 register (last yank) to clipboard
+map(
+  "n",
+  "<leader>Y",
+  function()
+    vim.fn.setreg("+", vim.fn.getreg("0"))
+  end,
+  { desc = "0 reg -> clipboard"}
+)
+-- stylua: ignore end
