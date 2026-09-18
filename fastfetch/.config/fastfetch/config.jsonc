@@ -206,7 +206,7 @@
     {
       "type": "localip",
       "keyIcon": "  ├󰩟 ",
-      "showIpv4": true,
+      "showIpv4": false,
       "showIpv6": false,
       "showMac": false,
       "showLoop": false,
