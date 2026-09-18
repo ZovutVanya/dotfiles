@@ -27,6 +27,7 @@ return {
         "gitignore",
         "gitcommit",
         "sql",
+        "swift",
         "scheme",
         "racket",
         "html",
