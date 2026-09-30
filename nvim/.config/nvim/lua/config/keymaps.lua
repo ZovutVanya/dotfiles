@@ -5,7 +5,7 @@
 vim.g.mapleader = " "
 
 local map = vim.keymap.set
-map({ "n", "x" }, "y", '"+y')
+map({ "n", "x", "v" }, "y", '"+y')
 map("n", "Y", '"+Y')
 
 map("n", "<leader>cw", '"_ciw')
