@@ -14,7 +14,21 @@ return {
       },
     },
     picker = {
+      win = {
+        input = {
+          keys = {
+            -- Map Ctrl+h and Ctrl+i to toggle hidden/ignored dynamically
+            ["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+            ["<C-g>"] = { "toggle_ignored", mode = { "i", "n" } },
+          },
+        },
+      },
       sources = {
+        grep = {
+          hidden = false, -- Show hidden files
+          ignored = false, -- Include .gitignore files
+        },
+
         explorer = {
           layout = { layout = { position = "right" } },
         },
