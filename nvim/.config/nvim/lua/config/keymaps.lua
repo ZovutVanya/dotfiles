@@ -10,6 +10,9 @@ map("n", "Y", '"+Y')
 
 map("n", "<leader>cw", '"_ciw')
 
+-- run current shell script
+vim.keymap.set("n", "<leader>fx", "<cmd>split | terminal %<cr>", { desc = "Run executable script" })
+
 -- stop Ctrl+z from suspending NeoVim
 map({ "n", "v", "i" }, "<C-z>", "u", { silent = true })
 
