@@ -13,6 +13,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -259,3 +260,8 @@ ssh_plain() {
 
 # mkdir and cd
 cdir() { mkdir -p -- "$1" && cd -- "$1" || return; }
+
+#===============================================================================
+
+# STARSHIP
+# eval "$(starship init zsh)"
