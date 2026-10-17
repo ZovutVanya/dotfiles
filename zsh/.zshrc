@@ -203,7 +203,9 @@ function y() {
 # bindkey -v
 #===============================================================================
 
-ssh-add --apple-load-keychain -q
+if [[ "$OSTYPE" == darwin* ]]; then
+  ssh-add --apple-load-keychain -q
+fi
 #===============================================================================
 
 # 6th version of ffmpeg for torchaudio backend
