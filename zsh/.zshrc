@@ -1,171 +1,107 @@
+# ==============================================================================
+# 1. EARLY INIT
+# ==============================================================================
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your Oh My Zsh installation.
+# ==============================================================================
+# 2. OH MY ZSH CONFIGURATION
+# ==============================================================================
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-# ZSH_THEME=""
-
-# Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+zstyle ':omz:update' mode auto
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
 HIST_STAMPS="dd.mm.yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
   zsh-autosuggestions
-  # zsh-syntax-highlighting
   fast-syntax-highlighting
   zsh-autocomplete
   colored-man-pages
   command-not-found
   zsh-shift-select
-  # zsh-vi-mode
 )
 
-source "$ZSH"/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
-# User configuration
+# ==============================================================================
+# 3. OS-SPECIFIC CONFIGURATIONS
+# ==============================================================================
 
-# export MANPATH="/usr/local/man:$MANPATH"
+if [[ "$OSTYPE" == darwin* ]]; then
+  # --- macOS (Personal) ---
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+  # Load Apple Keychain
+  ssh-add --apple-load-keychain -q
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-export EDITOR=nvim
+  # SICP
+  export PLTCOLLECTS="$PLTCOLLECTS:~/Desktop/SICP/"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
+  # PostgreSQL
+  export PATH="/Library/PostgreSQL/18/bin:$PATH"
 
-alias zshrc="nvim ~/.zshrc || vim ~/.zshrc"
-
-alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
-
-# my shell scripts
-export PATH="$HOME/shell-scripts:$PATH"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#===============================================================================
-
-# GREP
-alias grep='grep --color=auto'
-#===============================================================================
-
-# PYTHON
-alias py="python3"
-# Default Python environment
-if [ -d "$HOME/venvs/default" ]; then
-  source "$HOME/venvs/default/bin/activate"
-fi
-#===============================================================================
-
-# fastfetch
-alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
-#===============================================================================
-
-# THE DEFAULT CONFIG DIR
-export XDG_CONFIG_HOME="$HOME/.config"
-#===============================================================================
-
-# SICP
-export PLTCOLLECTS=$PLTCOLLECTS:~/Desktop/SICP/
-#===============================================================================
-
-# GIT
-git() {
-  if [[ $1 == "init" ]]; then
-    printf "**/.DS_Store\n**/Icon?" >>".gitignore"
-    command git init "${@:2}"
-  else
-    command git "$@"
+  # GNU utils instead of BSD (Homebrew)
+  BREW_BIN="/usr/local/bin/brew"
+  if [ -f "/opt/homebrew/bin/brew" ]; then
+    BREW_BIN="/opt/homebrew/bin/brew"
   fi
-}
+  if type "${BREW_BIN}" &>/dev/null; then
+    export BREW_PREFIX="$("${BREW_BIN}" --prefix)"
+    for bindir in "${BREW_PREFIX}/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
+    for mandir in "${BREW_PREFIX}/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
+    for mandir in "${BREW_PREFIX}/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
+  fi
 
-alias groot='cd $(git rev-parse --show-toplevel)'
-alias groot..='cd $(git rev-parse --show-toplevel) && cd ..'
-#===============================================================================
+  # Cask upgrade only works on macOS
+  alias brewup='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
 
-# lazygit
+  # SSH without TMUX
+  ssh_plain() {
+    ssh "$@" -t 'NO_TMUX=1 exec $SHELL -l'
+  }
+
+elif [[ "$OSTYPE" == linux-gnu* ]]; then
+  # --- Linux (Server) ---
+
+  # Linuxbrew setup
+  if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  fi
+
+  # Linux specific SSH Auth Sock (macOS handles this automatically via LaunchAgent)
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+  alias brewup='brew update && brew upgrade && brew cleanup'
+fi
+
+# ==============================================================================
+# 4. UNIVERSAL EXPORTS & PATHS
+# ==============================================================================
+export XDG_CONFIG_HOME="$HOME/.config"
+export PATH="$HOME/shell-scripts:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+export SUDO_EDITOR="$(which nvim)"
+export GPG_TTY=$(tty)
+
+# ==============================================================================
+# 5. UNIVERSAL ALIASES & FUNCTIONS
+# ==============================================================================
+alias zshrc="nvim ~/.zshrc || vim ~/.zshrc"
+alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
+alias grep='grep --color=auto'
+alias py="python3"
+alias ff='fastfetch --key-type icon --key-padding-left 1 --separator "  "'
 alias lg="lazygit"
-#===============================================================================
 
-# zoxide
-eval "$(zoxide init --cmd cd zsh)"
-#===============================================================================
-
-# eza
+# eza aliases
 export EZA_COLORS="da=35"
 alias ls='eza'
 alias lsc='eza -lahsmodified'
@@ -173,98 +109,71 @@ alias lsl='eza -lh'
 alias lsa='eza -lar'
 alias lst='eza -lhT'
 alias lstd='eza -lhTD'
-#===============================================================================
 
-# uv
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
-
-# "uv run" completions workaround
-function uvrun() {
-  uv run "$@"
+# git
+git() {
+  if [[ $1 == "init" ]]; then
+    printf "**/.DS_Store\n**/Icon?\n" >>".gitignore"
+    command git init "${@:2}"
+  else
+    command git "$@"
+  fi
 }
+alias groot='cd $(git rev-parse --show-toplevel)'
+alias groot..='cd $(git rev-parse --show-toplevel) && cd ..'
 
-# activate venvs
+# utils
+cdir() { mkdir -p -- "$1" && cd -- "$1" || return; }
+uvrun() { uv run "$@"; }
 alias uvact='source $(git rev-parse --show-toplevel)/.venv/bin/activate'
-#===============================================================================
 
 # Yazi
 function y() {
-  local tmp
-  tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
-  IFS= read -r -d '' cwd <"$tmp"
-  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd" || exit
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
   rm -f -- "$tmp"
 }
-#===============================================================================
 
-# vi mode
-# bindkey -v
-#===============================================================================
-
-if [[ "$OSTYPE" == darwin* ]]; then
-  ssh-add --apple-load-keychain -q
-fi
-#===============================================================================
-
-# 6th version of ffmpeg for torchaudio backend
-# export PATH="/opt/homebrew/opt/ffmpeg@6/bin:$PATH"
-# export CPPFLAGS="-I/opt/homebrew/opt/ffmpeg@6/include"
-# export LDFLAGS="-L/opt/homebrew/opt/ffmpeg@6/lib"
-# export DYLD_LIBRARY_PATH="/opt/homebrew/opt/ffmpeg@6/lib:$DYLD_LIBRARY_PATH"
-# export TORIO_USE_FFMPEG_VERSION=6
-#===============================================================================
-
-# GNU utils instead of BSD
-BREW_BIN="/usr/local/bin/brew"
-if [ -f "/opt/homebrew/bin/brew" ]; then
-  BREW_BIN="/opt/homebrew/bin/brew"
-fi
-
-if type "${BREW_BIN}" &>/dev/null; then
-  export BREW_PREFIX="$("${BREW_BIN}" --prefix)"
-  for bindir in "${BREW_PREFIX}/opt/"*"/libexec/gnubin"; do export PATH=$bindir:$PATH; done
-  # for bindir in "${BREW_PREFIX}/opt/"*"/bin"; do export PATH=$bindir:$PATH; done
-  for mandir in "${BREW_PREFIX}/opt/"*"/libexec/gnuman"; do export MANPATH=$mandir:$MANPATH; done
-  for mandir in "${BREW_PREFIX}/opt/"*"/share/man/man1"; do export MANPATH=$mandir:$MANPATH; done
-fi
-#===============================================================================
-
-# edit command buffer
+# ==============================================================================
+# 6. TOOL INITIALIZATIONS (Safeguarded)
+# ==============================================================================
+# Edit command buffer
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 
-#===============================================================================
+# Default Python environment
+if [ -d "$HOME/venvs/default" ]; then
+  source "$HOME/venvs/default/bin/activate"
+fi
 
-# PostgreSQL
-export PATH="/Library/PostgreSQL/18/bin:$PATH"
+# Zoxide
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
 
-#===============================================================================
+# Atuin
+if command -v atuin &>/dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
-# brew
-alias brewup='brew update && brew upgrade && brew upgrade --cask && brew cleanup'
+# UV
+if command -v uv &>/dev/null; then
+  eval "$(uv generate-shell-completion zsh)"
+  eval "$(uvx --generate-shell-completion zsh)"
+fi
 
-#===============================================================================
+# P10K Configure
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# go bin
-export PATH="$HOME/go/bin:$PATH"
-
-#===============================================================================
-
-# ssh to feynman without tmux
-ssh_plain() {
-  ssh "$@" -t 'NO_TMUX=1 exec $SHELL -l'
-}
-
-#===============================================================================
-
-# mkdir and cd
-cdir() { mkdir -p -- "$1" && cd -- "$1" || return; }
-
-#===============================================================================
-
-# STARSHIP
-# eval "$(starship init zsh)"
-eval "$(atuin init zsh)"
+# ==============================================================================
+# 7. TMUX AUTO-START
+# ==============================================================================
+# Automatically attach to a tmux session when logging in via SSH,
+# unless NO_TMUX=1 was passed or we are already inside TMUX.
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && $- == *i* && -z "$NO_TMUX" ]]; then
+  exec tmux new-session -A -s bruh
+fi
