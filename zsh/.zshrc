@@ -1,4 +1,11 @@
 # ==============================================================================
+# 0. TMUX AUTO-START (MUST BE BEFORE P10K)
+# ==============================================================================
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && $- == *i* && -z "$NO_TMUX" ]]; then
+  exec tmux new-session -A -s bruh
+fi
+
+# ==============================================================================
 # 1. EARLY INIT
 # ==============================================================================
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -19,11 +26,12 @@ HIST_STAMPS="dd.mm.yyyy"
 plugins=(
   git
   zsh-autosuggestions
-  fast-syntax-highlighting
-  zsh-autocomplete
+  zsh-syntax-highlighting
+  # fast-syntax-highlighting
   colored-man-pages
   command-not-found
   zsh-shift-select
+  zsh-autocomplete
 )
 
 source "$ZSH/oh-my-zsh.sh"
@@ -69,7 +77,7 @@ elif [[ "$OSTYPE" == linux-gnu* ]]; then
 
   # Linuxbrew setup
   if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
     export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   fi
 
@@ -168,12 +176,3 @@ fi
 
 # P10K Configure
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# ==============================================================================
-# 7. TMUX AUTO-START
-# ==============================================================================
-# Automatically attach to a tmux session when logging in via SSH,
-# unless NO_TMUX=1 was passed or we are already inside TMUX.
-if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && $- == *i* && -z "$NO_TMUX" ]]; then
-  exec tmux new-session -A -s bruh
-fi
