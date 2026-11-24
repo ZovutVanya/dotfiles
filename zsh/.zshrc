@@ -1,8 +1,14 @@
-# ==============================================================================
-# 0. TMUX AUTO-START (MUST BE BEFORE P10K)
-# ==============================================================================
-if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && $- == *i* && -z "$NO_TMUX" ]]; then
-  exec tmux new-session -A -s bruh
+if [[ "$OSTYPE" == linux-gnu* ]]; then
+  # Linuxbrew setup
+  if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  fi
+
+  # tmux autostart
+  if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && $- == *i* && -z "$NO_TMUX" ]]; then
+    exec tmux new-session -A -s bruh
+  fi
 fi
 
 # ==============================================================================
@@ -37,17 +43,13 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 # ==============================================================================
-# 3. OS-SPECIFIC CONFIGURATIONS
+# 3. OS SPECIFIC CONFIGURATION
 # ==============================================================================
-
 if [[ "$OSTYPE" == darwin* ]]; then
   # --- macOS (Personal) ---
 
   # Load Apple Keychain
   ssh-add --apple-load-keychain -q
-
-  # SICP
-  export PLTCOLLECTS="$PLTCOLLECTS:~/Desktop/SICP/"
 
   # PostgreSQL
   export PATH="/Library/PostgreSQL/18/bin:$PATH"
@@ -74,12 +76,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 elif [[ "$OSTYPE" == linux-gnu* ]]; then
   # --- Linux (Server) ---
-
-  # Linuxbrew setup
-  if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-  fi
 
   # Linux specific SSH Auth Sock (macOS handles this automatically via LaunchAgent)
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
