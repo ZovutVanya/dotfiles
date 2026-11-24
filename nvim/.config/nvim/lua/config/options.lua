@@ -20,6 +20,7 @@ vim.opt.incsearch = true
 vim.opt.winborder = "rounded"
 
 vim.opt.clipboard = ""
+-- vim.opt.clipboard = "unnamedplus"
 
 vim.opt.cmdheight = 1
 

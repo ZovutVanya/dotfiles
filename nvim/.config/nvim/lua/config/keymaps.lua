@@ -5,8 +5,27 @@
 vim.g.mapleader = " "
 
 local map = vim.keymap.set
-map({ "n", "x", "v" }, "y", '"+y')
-map("n", "Y", '"+Y')
+
+-- stylua: ignore start
+-- copy the contents of 0 register (last yank) to clipboard
+map(
+  "n",
+  "<leader>Y",
+  function()
+    vim.fn.setreg("+", vim.fn.getreg("0"))
+  end,
+  { desc = "0 reg -> clipboard"}
+)
+-- copy the contents of " register (last delete) to clipboard
+map(
+  "n",
+  "<leader>D",
+  function()
+    vim.fn.setreg("+", vim.fn.getreg('"'))
+  end,
+  { desc = '" reg -> clipboard'}
+)
+-- stylua: ignore end
 
 map("n", "<leader>cw", '"_ciw')
 
@@ -18,9 +37,6 @@ map({ "n", "v", "i" }, "<C-z>", "u", { silent = true })
 
 -- restart neovim
 map("n", "<leader>R", function()
-  -- local session = vim.fn.stdpath("state") .. "/restart_session.vim"
-  -- vim.cmd("mksession! " .. vim.fn.fnameescape(session))
-  -- vim.cmd("restart source " .. vim.fn.fnameescape(session))
   vim.cmd("restart")
 end, { desc = "Restart Neovim" })
 
@@ -70,15 +86,3 @@ map(
 
 -- copy filename to the systems clipboard
 map("n", "<leader>fC", ":let @+ = expand('%:p')<CR>", { desc = 'Copy filepath to "+' })
-
--- stylua: ignore start
--- copy the contents of 0 register (last yank) to clipboard
-map(
-  "n",
-  "<leader>Y",
-  function()
-    vim.fn.setreg("+", vim.fn.getreg("0"))
-  end,
-  { desc = "0 reg -> clipboard"}
-)
--- stylua: ignore end
