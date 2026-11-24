@@ -26,18 +26,20 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 zstyle ':omz:update' mode auto
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true" # Conflicts with zsh-autocomplete
 HIST_STAMPS="dd.mm.yyyy"
+
+# Must be sourced BEFORE oh-my-zsh.sh runs compinit
+ZSH_AUTOCOMPLETE="${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+[[ -f "$ZSH_AUTOCOMPLETE" ]] && source "$ZSH_AUTOCOMPLETE"
 
 plugins=(
   git
   zsh-autosuggestions
-  zsh-syntax-highlighting
-  # fast-syntax-highlighting
   colored-man-pages
   command-not-found
   zsh-shift-select
-  zsh-autocomplete
+  zsh-syntax-highlighting
 )
 
 source "$ZSH/oh-my-zsh.sh"
