@@ -180,7 +180,7 @@ ragy() {
   if [[ -n "$REX_BLOCK" ]]; then
     # Use agy's native interactive prompt flag.
     # The strict output constraint prevents it from writing a long summary, saving time and tokens.
-    command agy -i "You are running inside the Rex terminal multiplexer. Your Block ID is $REX_BLOCK. Read the 'rex' skill guide ('~/.agents/skills/rex/SKILL.md') and '~/.gemini/config/rules/rex.md'. If cwd contains AGENTS.md, read it too. Acknowledge this by replying ONLY with the exact word 'Hooked.' and wait for my next command." "$@"
+    command agy -i "You are running inside the Rex terminal multiplexer. Your Block ID is $REX_BLOCK. Read the 'rex' skill guide ('~/.agents/skills/rex/SKILL.md') and '~/.gemini/config/rules/rex.md'. To see other info about current session run 'rex whoami'. If cwd contains AGENTS.md, read it too. Acknowledge this by replying ONLY with the exact word 'Hooked.' and wait for my next command." "$@"
   else
     command agy "$@"
   fi
