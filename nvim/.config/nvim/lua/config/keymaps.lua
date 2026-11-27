@@ -67,7 +67,7 @@ map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true })
 map("n", "<C-e>", "ge")
 
 -- scrolling down without moving the cursor
-map("n", "<C-h>", "<C-e>")
+map("n", "<C-n>", "<C-e>")
 
 -- jumping half page keeps the cursor at the middle
 map("n", "<C-d>", "<C-d>zz")
