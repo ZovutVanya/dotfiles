@@ -20,6 +20,25 @@ vim.opt.incsearch = true
 vim.opt.winborder = "rounded"
 
 vim.opt.clipboard = ""
+local osc52 = require("vim.ui.clipboard.osc52")
+
+local function no_paste()
+  return function()
+    return { {}, "v" }
+  end
+end
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = osc52.copy("+"),
+    ["*"] = osc52.copy("*"),
+  },
+  paste = {
+    ["+"] = no_paste(),
+    ["*"] = no_paste(),
+  },
+}
 -- vim.opt.clipboard = "unnamedplus"
 
 vim.opt.cmdheight = 1
