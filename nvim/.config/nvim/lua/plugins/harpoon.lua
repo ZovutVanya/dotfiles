@@ -7,88 +7,128 @@ return {
     },
     settings = {
       save_on_toggle = true,
+      sync_on_ui_close = true,
     },
   },
   config = function(_, opts)
     local harpoon = require("harpoon")
-    local seen = {}
-    vim.api.nvim_create_autocmd("BufEnter", {
-      callback = function(event)
-        local bufnr = event.buf
-        if
-          seen[bufnr]
-          or not vim.api.nvim_buf_is_valid(bufnr)
-          or not vim.bo[bufnr].buflisted
-          or vim.bo[bufnr].buftype ~= ""
-          or vim.bo[bufnr].filetype == "dashboard"
-          or vim.api.nvim_buf_get_name(bufnr) == ""
-        then
-          return
-        end
-        seen[bufnr] = true
-        local list = harpoon:list()
+    harpoon:setup(opts)
 
-        -- Remove any empty/invalid entries that snuck in
-        local items = list.items
-        for i = #items, 1, -1 do
-          local val = items[i] and items[i].value
-          if not val or val == "" then
-            list:remove(items[i])
+    local max_items = 9
+    local excluded_filetypes = {
+      dashboard = true,
+      snacks_dashboard = true,
+      alpha = true,
+      starter = true,
+    }
+
+    local function to_abs(root, path)
+      if path == "" then
+        return ""
+      end
+      if path:sub(1, 1) == "/" then
+        return vim.fs.normalize(path)
+      end
+      return vim.fs.normalize(root .. "/" .. path)
+    end
+
+    local function to_rel(root, abs_path)
+      local norm_root = vim.fs.normalize(root)
+      if abs_path == norm_root then
+        return "."
+      end
+      local prefix = norm_root .. "/"
+      if abs_path:sub(1, #prefix) == prefix then
+        return abs_path:sub(#prefix + 1)
+      end
+      return abs_path
+    end
+
+    local function is_syncable_buf(bufnr)
+      if not vim.api.nvim_buf_is_valid(bufnr) then
+        return false
+      end
+      if not vim.bo[bufnr].buflisted or vim.bo[bufnr].buftype ~= "" then
+        return false
+      end
+      if excluded_filetypes[vim.bo[bufnr].filetype] then
+        return false
+      end
+      return vim.api.nvim_buf_get_name(bufnr) ~= ""
+    end
+
+    local function sync_harpoon_with_buffers()
+      local list = harpoon:list()
+      local root = list.config.get_root_dir()
+
+      local active_bufs = {}
+      local active_by_abs = {}
+      for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        if is_syncable_buf(bufnr) then
+          local abs = vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr))
+          if not active_by_abs[abs] then
+            local entry = {
+              bufnr = bufnr,
+              abs = abs,
+              rel = to_rel(root, abs),
+            }
+            active_by_abs[abs] = entry
+            table.insert(active_bufs, entry)
           end
         end
-        if list:length() < 9 then
-          list:add()
+      end
+
+      -- Keep existing Harpoon items that are still open (preserving order & cursor context)
+      local new_items = {}
+      local seen_abs = {}
+      for i = 1, list._length do
+        local item = list.items[i]
+        if item and item.value and item.value ~= "" then
+          local abs = to_abs(root, item.value)
+          if active_by_abs[abs] and not seen_abs[abs] then
+            table.insert(new_items, item)
+            seen_abs[abs] = true
+          end
         end
-      end,
+      end
+
+      -- Append any newly opened/restored buffers not yet in Harpoon
+      for _, entry in ipairs(active_bufs) do
+        if #new_items >= max_items then
+          break
+        end
+        if not seen_abs[entry.abs] then
+          table.insert(new_items, list.config.create_list_item(list.config, entry.rel))
+          seen_abs[entry.abs] = true
+        end
+      end
+
+      list.items = new_items
+      list._length = #new_items
+      pcall(vim.cmd, "redrawtabline")
+    end
+
+    local sync_scheduled = false
+    local function schedule_sync()
+      if sync_scheduled then
+        return
+      end
+      sync_scheduled = true
+      vim.schedule(function()
+        sync_scheduled = false
+        sync_harpoon_with_buffers()
+      end)
+    end
+
+    local group = vim.api.nvim_create_augroup("HarpoonBufferlineSync", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufWipeout", "BufEnter", "SessionLoadPost" }, {
+      group = group,
+      callback = schedule_sync,
     })
-
-    vim.api.nvim_create_autocmd("BufDelete", {
-      callback = function(event)
-        local bufnr = event.buf
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
-
-        local list = harpoon:list()
-
-        -- Clean up empty entries
-        local clean = {}
-        for _, item in ipairs(list.items) do
-          if item and item.value and item.value ~= "" then
-            table.insert(clean, item)
-          end
-        end
-        list.items = clean
-
-        -- Remove the deleted buffer by normalizing paths
-        if bufname ~= "" then
-          local rel = vim.fn.fnamemodify(bufname, ":~:.")
-          local clean2 = {}
-          for _, item in ipairs(list.items) do
-            if item and item.value ~= bufname and item.value ~= rel then
-              table.insert(clean2, item)
-            end
-          end
-          list.items = clean2
-        end
-        seen[bufnr] = nil
-      end,
-    })
-
-    vim.api.nvim_create_autocmd("BufAdd", {
-      callback = function(event)
-        local bufnr = event.buf
-        -- Only add real, named, normal buffers
-        if
-          vim.api.nvim_buf_is_valid(bufnr)
-          and vim.bo[bufnr].buflisted
-          and vim.bo[bufnr].buftype == ""
-          and vim.api.nvim_buf_get_name(bufnr) ~= ""
-        then
-          local list = harpoon:list()
-          if list:length() < 9 then
-            list:add()
-          end
-        end
-      end,
+    vim.api.nvim_create_autocmd("OptionSet", {
+      group = group,
+      pattern = "buflisted",
+      callback = schedule_sync,
     })
   end,
   keys = function()
